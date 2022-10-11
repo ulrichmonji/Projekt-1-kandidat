@@ -1,0 +1,214 @@
+{% extends 'kandidat/base.html' %}
+
+{% block content %}
+
+    <div class="mx-4 md:mx-12 my-8 flex items-center justify-center">
+        <div class="form__container flex flex-col p2 gap-4 my-4 border p-4 rounded-xl shadow">
+            <h3 class="text-slate-800 text-3xl font-normal">
+                Add  Kandidat
+            </h3>
+            <p class="text-xl text-red-500 font-semibold hidden">
+
+            </p>
+            <!-- Formular-->
+                <form class="" id="form">
+                    <div class="mb-6">
+                        <label for="Voname" class="block mb-2 text-xl font-normal text-gray-900 dark:text-gray-300"> Vorname</label>
+                        <input type="text" id="firstname" minlength="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 peer peer-invalid:border-1 peer-invalid:border-red-500 peer-invalid:ring-1 peer-invalid:ring-red-500" placeholder=" Vorname eingeben" required="">
+
+                    </div>
+                    <div class="mb-6">
+                        <label for="lastname" class="block mb-2 text-xl font-normal text-gray-900 dark:text-gray-300">Nachname</label>
+                        <input type="text" id="lastname" minlength=""5 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-2 peer peer-invalid:border-1 peer-invalid:border-red-500 peer-invalid:ring-1 peer-invalid:ring-red-500" placeholder="Nachname eingeben" required="">
+
+                    </div>
+                    <div class="mb-6">
+                        <label for="Email" class="block mb-2 text-xl font-normal text-gray-900 dark:text-gray-300"> Email</label>
+                        <input type="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-2 peer peer-invalid:border-1 peer-invalid:border-red-500 peer-invalid:ring-1 peer-invalid:ring-red-500" placeholder="Name@example.com" required="">
+
+                    </div>
+                    <div class="flex items-center jutify-start py-4 gap-4">
+                        <div class="flex items-center pl-4 rounded ">
+                            <input id="bordered-radio-1" type="radio" value="männlich" name="sex" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 sex">
+                            <label for="bordered-radio-1" class="py-4 ml-2 w-full text-xl font-medium text-gray-900 dark:text-gray-300">männlich</label>
+                        </div>
+                        <div class="flex items-center pl-4 rounded">
+                            <input checked id="bordered-radio-2" type="radio" value="weiblich" name="sex" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 sex">
+                            <label for="bordered-radio-2" class="py-4 ml-2 w-full text-xl font-medium text-gray-900 dark:text-gray-300 ">weiblich</label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="phone" class="block mb-2 text-xl font-normal text-gray-900 dark:text-gray-300 "> Nummer</label>
+                        <input type="text" minlength="7" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-2 peer peer-invalid:border-1 peer-invalid:border-red-500 peer-invalid:ring-1 peer-invalid:ring-red-500" placeholder="+4958648996" required="">
+
+                    </div>
+                    <div class="mb-6">
+                        <label for="phone" class="block mb-2 text-xl font-normal text-gray-900 dark:text-gray-300 ">Beschreibung</label>
+                        <textarea type="text" minlength="7" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-2 peer peer-invalid:border-1 peer-invalid:border-red-500 peer-invalid:ring-1 peer-invalid:ring-red-500" placeholder="hier text schreiben..." required=""></textarea>
+                    </div>
+                    <div class="flex items-center my-6,justify-center">
+                        <div class="flex items-center h-5">
+                            <input id="adult" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2" required="">
+                        </div>
+                        <label for="remember" class="ml-2 text-xl font-bold text-gray-900 dark:text-gray-300">Ich bin kein Erwachsener</label>
+                    </div>
+                    {% csrf_token %}
+                    <button type="Einreichen" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-normal rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-4" id="submit">Einreichen</button>
+                </form>
+
+            <!-- Formularende -->
+
+        </div>
+    </div>
+
+    <!-- Dies ist das Modal-->
+
+    <div class="hidden backdrop-blur-md  top-0 right-0 w-full h-screen flex items-center justify-center z-20 bg-transparent" id="modal">
+        <div id="popup-modal" tabindex="-1" class=" overflow-y-auto overflow-x-hidden  md:inset-0 h-modal md:h-full flex items-center justify-center">
+            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" id="close-first" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6 text-center">
+                        <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-green-400 dark:text-green-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Sie haben erfolgreich eine Candidat hinzugefügt</h3>
+                        <button id="p-home" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                            Back home
+                        </button>
+                        <button  type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" id="p-close">nein,weiter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- hier endet das erste Modal -->
+
+    <!-- hier beginnt die zweite Modalität -->
+
+    <div class="hidden backdrop-blur-md  top-0 right-0 w-full h-screen flex items-center justify-center z-20 bg-transparent" id="secondmodal">
+        <div id="popup-modal" tabindex="-1" class=" overflow-y-auto overflow-x-hidden  md:inset-0 h-modal md:h-full flex items-center justify-center">
+            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" id="close-second" >
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6 text-center">
+                        <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-red-500 dark:text-red-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Irgendetwas stimmt nicht, vielleicht existiert der Benutzer bereits!</h3>
+                        <button  type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" id="s-home">
+                            Back home
+                        </button>
+                        <button  type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" id="s-modal">Nein, aktualisieren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% block script %}
+
+    <script>
+
+        $('document').ready(()=>{
+
+            const closeModal = (modal)=>{
+                $(`#${modal}`).removeClass('fixed');
+                $(`#${modal}`).addClass('hidden');
+            }
+
+            const showModal = (modal)=>{
+                $(`#${modal}`).removeClass('hidden');
+                $(`#${modal}`).addClass('fixed');
+            }
+
+            // hier werden modale verwaltet
+
+            $('#close-first').on('click',()=>{
+                closeModal('modal');
+            })
+            $('#p-close').on('click',()=>{
+                closeModal('modal');
+            })
+            $('#p-close').on('click',()=>{
+                closeModal('modal');
+            })
+            $('#close-second').on('click',(e)=>{
+                closeModal('secondmodal');
+            })
+            $('#s-modal').on('click',(e)=>{
+                closeModal('secondmodal');
+            })
+            $('#p-home').on('click',(e)=>{
+                document.location.replace("{% url 'kandidat-home'  %}")
+            })
+            $('#s-home').on('click',(e)=>{
+                document.location.replace("{% url 'kandidat-home'  %}")
+            })
+
+            //Ende modale verwalten
+
+            const collectData = () =>{
+                let firstname = $('#firstname').val()
+                let lastname = $('#lastname').val()
+                let email = $('#email').val()
+                let phone = $('#phone').val()
+                let is_adult = $('#adult:checked').val() === undefined ? false : true
+                let sex = $('.sex:checked').val()
+                let description = $('#description').val()
+
+                const data = {"firstname":firstname,"lastname":lastname,"email":email,"phone":phone,"adult":is_adult,"sex":sex,"description":description}
+
+                return data;
+            }
+
+
+            const sendData = async (data)=>{
+
+
+                 fetch("http://192.168.98.1:8080/api/kandidaten",{
+                    method: 'POST',
+                    headers:{
+                        "content-type": "application/json",
+                        "X-CSRFToken":getCookie("csrftoken")
+                    },
+                    body: JSON.stringify({'Vorname':data.firstname,'Nachname':data.lastname,'geschlecht':data.sex,'email':data.email,'Nummer':data.phone,'ist_erwachsene':data.adult,"Beschreibung":data.description})
+                 })
+                 .then(data=>{
+                    if (data.status === 201 || data.status === 200){
+                        document.location.replace("{% url 'kandidat-home' %}")
+                        return rest
+                    }
+                    else{
+                        document.location.reload()
+                        console.log(rest.status)
+                    }
+
+                    return data.json()
+                })
+                 .then((rest)=>rest)
+                 .then(data=>{
+                    console.log(data)
+                 })
+            }
+
+
+            $('#submit').on('click',(e)=>{
+                e.preventDefault();
+                data = collectData();
+                sendData(data);
+            })
+
+
+        })
+
+    </script>
+
+    {% endblock %}
+
+{% endblock %}
