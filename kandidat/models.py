@@ -12,4 +12,4 @@ class Kandidat(models.Model):
     ist_erwachsene = models.BooleanField(default=False, )
 
     def __str__(self):
-         return self.Nachname
+         return self.Vorname

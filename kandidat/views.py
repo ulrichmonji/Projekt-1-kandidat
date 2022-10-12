@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def kandidaten_list(request):
-    # GET list of candidates, POST a new candidate, DELETE all candidates
+    # GET Liste der Kandidaten, POST einen neuen Kandidaten, DELETE alle Kandidaten
     if request.method == 'GET':
         kandidat = Kandidat.objects.all()
 
@@ -21,13 +21,11 @@ def kandidaten_list(request):
 
         kandidat_serializer = KandidatSerializer(kandidat, many=True)
         return JsonResponse(kandidat_serializer.data, safe=False)
-        # 'safe=False' for objects serialization
+        # safe=False' für die Serialisierung von Objekten
 
     elif request.method == 'POST':
         print("kandidat: ",request.data)
-        # kandidat_data = JSONParser().parse(request)
-        #la ligne de code du haut causais une erreur je recommande de ne plus l'utiliser
-        kandidat_serializer = KandidatSerializer(data=request.data) #je la modifie donc avec celle ci
+        kandidat_serializer = KandidatSerializer(data=request.data)
         if kandidat_serializer.is_valid():
             kandidat_serializer.save()
             return JsonResponse(kandidat_serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +37,7 @@ def kandidaten_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def kandidaten_detail(request, pk):
-    # find candidate by pk (id)
+    # Suche nach Kandidaten durch pk (id)
     try:
         kandidat = Kandidat.objects.get(pk=pk)
     except Kandidat.DoesNotExist:
@@ -51,8 +49,6 @@ def kandidaten_detail(request, pk):
         return JsonResponse(kandidat_serializer.data)
 
     elif request.method == 'PUT':
-        # kandidat_data = JSONParser().parse(request)
-        # kandidat_serializer = KandidatSerializer(kandidat, data=request.data) ses lignes renvoient des erreurs
         kandidat_serializer = KandidatSerializer(kandidat,data=request.data)
         if kandidat_serializer.is_valid():
             kandidat_serializer.save()
@@ -65,7 +61,7 @@ def kandidaten_detail(request, pk):
 
 @api_view(['GET'])
 def kandidaten_list_erwachsene(request):
-    # GET all adults candidates
+    # GET alle erwachsenen Kandidaten
     kandidat = Kandidat.objects.filter(is_adult=True)
     if request.method == 'GET':
         kandidat_serializer = KandidatSerializer(kandidat, many=True)
@@ -93,7 +89,7 @@ def kandidat_update(request,id):
     return render(request,'kandidat/kandidat-update.html',{'current':'update',"id":id,"candidat":kandidat})
 
 
-#la fonction pour retourner tous les utilisateurs et le premier utilisateur de la liste
+#die Funktion, um alle Benutzer und den ersten Benutzer in der Liste zurückzugeben
 
 def kandidat_all(request,id):
 
@@ -108,7 +104,7 @@ def kandidat_all(request,id):
     current = Kandidat.objects.get(id=id).Vorname
     return render(request,'kandidat/kandidat-all.html',{'current':current,"id":id,"candidats":candidats,"single":single})
 
-#fonction pour retourner un en particulier
+#Funktion, um einen bestimmten zurückzugeben
 
 
 def kandidat_home(request):
