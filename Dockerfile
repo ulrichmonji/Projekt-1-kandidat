@@ -1,5 +1,7 @@
 FROM python:3.9.4-alpine
 LABEL maintainer="Romaric Yemeli"
+
+# Set workdir app
 WORKDIR /opt
 # update image and install some prerequisites
 RUN apk update && \
@@ -13,7 +15,7 @@ COPY . /opt/
 RUN pip install -r requirements.txt
 
 # Expose application PORT
-EXPOSE 8080
+EXPOSE $PORT
 
 # Run application
-CMD ["python","manage.py","runserver","0.0.0.0:8080"]
+CMD python manage.py runserver 0.0.0.0:$PORT
