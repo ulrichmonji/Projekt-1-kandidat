@@ -3,12 +3,10 @@ LABEL maintainer="Romaric Yemeli"
 WORKDIR /opt
 # update image and install some prerequisites
 RUN apk update && \
-    apk add gcc musl-dev postgresql-dev && \
-    apk add git bash
+    apk add gcc musl-dev postgresql-dev bash
 RUN pip install --upgrade pip    
 
 # Cloning app     
-# RUN git clone https://github.com/ulrichmonji/Projekt-1-kandidat.git /opt/
 COPY . /opt/
 
 # Install application requirements
@@ -18,4 +16,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 # Run application
-CMD ["python","manage.py","runserver","192.168.0.100:8080"]
+CMD ["python","manage.py","runserver","0.0.0.0:8080"]
